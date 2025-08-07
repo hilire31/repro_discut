@@ -26,6 +26,6 @@ mkdir -p logs
 
 
 sh ./training-scripts/prepareTrainSegFiles.sh  #seg_train.json
-#sh prepareDevSegFiles.sh $basepath_arg #seg_dev.json
+sh prepareDevSegFiles.sh #seg_dev.json
 # train program
 #python3 seg-task1-train-valdev-withseed.py  $basepath_arg/seg_train.json $basepath_arg/seg_dev.json
