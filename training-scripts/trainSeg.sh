@@ -8,7 +8,7 @@
 
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --partition=L40SNodes
+#SBATCH --partition=GPUNodes
 #SBATCH --gres=gpu:1
 #SBATCH --gres-flags=enforce-binding
 
