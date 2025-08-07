@@ -6,3 +6,5 @@ output_data/*
 *.log
 *.tok
 *.json
+*.out
+*.err
