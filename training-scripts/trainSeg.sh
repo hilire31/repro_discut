@@ -30,4 +30,4 @@ outpath_arg="./data_out"
 sh ./training-scripts/prepareTrainSegFiles.sh  #seg_train.json
 sh ./training-scripts/prepareDevSegFiles.sh #seg_dev.json
 # train program
-python3 ./training-scripts/seg-task1-train-valdev-withseed.py  $outpath_arg/seg_train.json $outpath_arg/seg_dev.json
+python3 training-scripts\seg-task1-train-valdev-withseed.py  $outpath_arg/seg_train.json $outpath_arg/seg_dev.json
