@@ -7,6 +7,6 @@ basepath_arg="$1"
 
 
 sh prepareTrainSegFiles.sh  $basepath_arg #seg_train.json
-sh prepareDevSegFiles.sh $basepath_arg #seg_dev.json
+#sh prepareDevSegFiles.sh $basepath_arg #seg_dev.json
 # train program
-python3 seg-task1-train-valdev-withseed.py  $basepath_arg/seg_train.json $basepath_arg/seg_dev.json
+#python3 seg-task1-train-valdev-withseed.py  $basepath_arg/seg_train.json $basepath_arg/seg_dev.json

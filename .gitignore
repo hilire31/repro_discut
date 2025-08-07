@@ -5,3 +5,4 @@ output_data/*
 *.connlu
 *.log
 *.tok
+*.json
