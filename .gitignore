@@ -1,0 +1,7 @@
+
+our-model/*
+our-system-outputs/*
+output_data/*
+*.connlu
+*.log
+*.tok
