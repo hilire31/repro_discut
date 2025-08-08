@@ -21,4 +21,4 @@ export SING=/apps/containerCollections/CUDA12/pytorch2-NGC-24-02.sif
 # Crée le dossier de logs si nécessaire
 mkdir -p logs
 
-sh ./inference-scripts/prepareTrainSegFiles.sh  
+sh ./inference-scripts/testSeg_connlu.sh  
