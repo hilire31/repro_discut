@@ -1,27 +1,55 @@
 #!/bin/bash
 
-basepath_arg="$1"
-model="our-model/segIdent-aukbc-model"
+#SBATCH --job-name=discutsdisrupt
+#SBATCH --output=logs/launcher-%j.out
+#SBATCH --error=logs/launcher-%j.err
 
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/ces.rst.crdt/ces.rst.crdt_test.conllu $basepath_arg/output_data/ces.rst.crdt/ces.rst.crdt_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/deu.rst.pcc/deu.rst.pcc_test.conllu $basepath_arg/output_data/deu.rst.pcc/deu.rst.pcc_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/eng.dep.scidtb/eng.dep.scidtb_test.conllu $basepath_arg/output_data/eng.dep.scidtb/eng.dep.scidtb_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/eng.erst.gum/eng.erst.gum_test.conllu $basepath_arg/output_data/eng.erst.gum/eng.erst.gum_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/eng.rst.oll/eng.rst.oll_test.conllu $basepath_arg/output_data/eng.rst.oll/eng.rst.oll_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/eng.rst.rstdt/eng.rst.rstdt_test.conllu $basepath_arg/output_data/eng.rst.rstdt/eng.rst.rstdt_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/eng.rst.sts/eng.rst.sts_test.conllu $basepath_arg/output_data/eng.rst.sts/eng.rst.sts_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/eng.rst.umuc/eng.rst.umuc_test.conllu $basepath_arg/output_data/eng.rst.umuc/eng.rst.umuc_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/eng.sdrt.msdc/eng.sdrt.msdc_test.conllu $basepath_arg/output_data/eng.sdrt.msdc/eng.sdrt.msdc_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/eng.sdrt.stac/eng.sdrt.stac_test.conllu $basepath_arg/output_data/eng.sdrt.stac/eng.sdrt.stac_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/eus.rst.ert/eus.rst.ert_test.conllu $basepath_arg/output_data/eus.rst.ert/eus.rst.ert_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/fas.rst.prstc/fas.rst.prstc_test.conllu $basepath_arg/output_data/fas.rst.prstc/fas.rst.prstc_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/fra.sdrt.annodis/fra.sdrt.annodis_test.conllu $basepath_arg/output_data/fra.sdrt.annodis/fra.sdrt.annodis_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/fra.sdrt.summre/fra.sdrt.summre_test.conllu $basepath_arg/output_data/fra.sdrt.summre/fra.sdrt.summre_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/nld.rst.nldt/nld.rst.nldt_test.conllu $basepath_arg/output_data/nld.rst.nldt/nld.rst.nldt_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/por.rst.cstn/por.rst.cstn_test.conllu $basepath_arg/output_data/por.rst.cstn/por.rst.cstn_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/rus.rst.rrt/rus.rst.rrt_test.conllu $basepath_arg/output_data/rus.rst.rrt/rus.rst.rrt_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/spa.rst.rststb/spa.rst.rststb_test.conllu $basepath_arg/output_data/spa.rst.rststb/spa.rst.rststb_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/spa.rst.sctb/spa.rst.sctb_test.conllu $basepath_arg/output_data/spa.rst.sctb/spa.rst.sctb_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/zho.dep.scidtb/zho.dep.scidtb_test.conllu $basepath_arg/output_data/zho.dep.scidtb/zho.dep.scidtb_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/zho.rst.gcdt/zho.rst.gcdt_test.conllu $basepath_arg/output_data/zho.rst.gcdt/zho.rst.gcdt_test.conllu
-python3 seg_inference_conllu.py $basepath_arg/$model $basepath_arg/data/zho.rst.sctb/zho.rst.sctb_test.conllu $basepath_arg/output_data/zho.rst.sctb/zho.rst.sctb_test.conllu
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --partition=L40SNodes
+#SBATCH --gres=gpu:1
+#SBATCH --gres-flags=enforce-binding
+
+export HF_DATASETS_CACHE="/home/froussea/.cache/huggingface/datasets/cache_job_$SLURM_JOB_ID"
+
+nvidia-smi
+# Spécifie l’environnement Python à utiliser
+export ENV=/projects/andiamo/froussea/venv/bin/python
+# Spécifie l'emplacement de la singularité
+export SING=/apps/containerCollections/CUDA12/pytorch2-NGC-24-02.sif
+
+# Crée le dossier de logs si nécessaire
+mkdir -p logs
+
+
+
+
+
+
+basepath_arg="/projects/andiamo/corpus/sharedtask2025_test"
+outpath_arg="./data_out"
+#model="our-model/segIdent-aukbc-model"
+model="projects/andiamo/froussea/repro_discut/xlm-roberta-segmentation-new1"
+
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/ces.rst.crdt/ces.rst.crdt_test.conllu $basepath_arg/ces.rst.crdt/ces.rst.crdt_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/deu.rst.pcc/deu.rst.pcc_test.conllu $basepath_arg/deu.rst.pcc/deu.rst.pcc_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.dep.scidtb/eng.dep.scidtb_test.conllu $basepath_arg/eng.dep.scidtb/eng.dep.scidtb_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.erst.gum/eng.erst.gum_test.conllu $basepath_arg/eng.erst.gum/eng.erst.gum_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.rst.oll/eng.rst.oll_test.conllu $basepath_arg/eng.rst.oll/eng.rst.oll_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.rst.rstdt/eng.rst.rstdt_test.conllu $basepath_arg/eng.rst.rstdt/eng.rst.rstdt_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.rst.sts/eng.rst.sts_test.conllu $basepath_arg/eng.rst.sts/eng.rst.sts_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.rst.umuc/eng.rst.umuc_test.conllu $basepath_arg/eng.rst.umuc/eng.rst.umuc_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.sdrt.msdc/eng.sdrt.msdc_test.conllu $basepath_arg/eng.sdrt.msdc/eng.sdrt.msdc_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.sdrt.stac/eng.sdrt.stac_test.conllu $basepath_arg/eng.sdrt.stac/eng.sdrt.stac_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eus.rst.ert/eus.rst.ert_test.conllu $basepath_arg/eus.rst.ert/eus.rst.ert_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/fas.rst.prstc/fas.rst.prstc_test.conllu $basepath_arg/fas.rst.prstc/fas.rst.prstc_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/fra.sdrt.annodis/fra.sdrt.annodis_test.conllu $basepath_arg/fra.sdrt.annodis/fra.sdrt.annodis_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/fra.sdrt.summre/fra.sdrt.summre_test.conllu $basepath_arg/fra.sdrt.summre/fra.sdrt.summre_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/nld.rst.nldt/nld.rst.nldt_test.conllu $basepath_arg/nld.rst.nldt/nld.rst.nldt_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/por.rst.cstn/por.rst.cstn_test.conllu $basepath_arg/por.rst.cstn/por.rst.cstn_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/rus.rst.rrt/rus.rst.rrt_test.conllu $basepath_arg/rus.rst.rrt/rus.rst.rrt_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/spa.rst.rststb/spa.rst.rststb_test.conllu $basepath_arg/spa.rst.rststb/spa.rst.rststb_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/spa.rst.sctb/spa.rst.sctb_test.conllu $basepath_arg/spa.rst.sctb/spa.rst.sctb_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/zho.dep.scidtb/zho.dep.scidtb_test.conllu $basepath_arg/zho.dep.scidtb/zho.dep.scidtb_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/zho.rst.gcdt/zho.rst.gcdt_test.conllu $basepath_arg/zho.rst.gcdt/zho.rst.gcdt_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/zho.rst.sctb/zho.rst.sctb_test.conllu $basepath_arg/zho.rst.sctb/zho.rst.sctb_test.conllu
