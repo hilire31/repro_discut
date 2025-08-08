@@ -7,7 +7,7 @@
 basepath_arg="/projects/andiamo/corpus/sharedtask2025_test"
 outpath_arg="./data_out"
 #model="our-model/segIdent-aukbc-model"
-model="projects/andiamo/froussea/repro_discut/xlm-roberta-segmentation-new1"
+model="/projects/andiamo/froussea/repro_discut/xlm-roberta-segmentation-new1"
 
 python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/ces.rst.crdt/ces.rst.crdt_test.conllu $basepath_arg/ces.rst.crdt/ces.rst.crdt_test.conllu
 python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/deu.rst.pcc/deu.rst.pcc_test.conllu $basepath_arg/deu.rst.pcc/deu.rst.pcc_test.conllu
