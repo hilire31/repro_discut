@@ -482,8 +482,9 @@ class SegmentationEvaluation(Evaluation):
 			spans.append((span_start, span_end))
 
 		if not self.LAB_SEG_B in labels:
-			pass #DEBUG to remove
-			exit(f"Unrecognized labels. Expecting: {self.LAB_SEG_B}, {self.LAB_SEG_I}...")
+			pass
+			#DEBUG to remove
+			#exit(f"Unrecognized labels. Expecting: {self.LAB_SEG_B}, {self.LAB_SEG_I}...")
 
 		return tokens, labels, spans
 
