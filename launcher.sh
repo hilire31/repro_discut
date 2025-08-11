@@ -6,7 +6,7 @@
 
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --partition=L40SNodes
+#SBATCH --partition=RTX6000Node
 #SBATCH --gres=gpu:1
 #SBATCH --gres-flags=enforce-binding
 
@@ -21,4 +21,6 @@ export SING=/apps/containerCollections/CUDA12/pytorch2-NGC-24-02.sif
 # Crée le dossier de logs si nécessaire
 mkdir -p logs
 
-sh ./inference-scripts/testSeg_connlu.sh  
+#sh ./inference-scripts/testSeg_connlu.sh  
+sh all_test.sh
+echo "Finished running inference scripts"
