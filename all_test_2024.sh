@@ -7,7 +7,7 @@
 
 
 basepath_arg="/projects/andiamo/corpus/sharedtask2025/data_test"
-outpath_arg="./data_out"
+outpath_arg="./our-system-outputs"
 #model="our-model/segIdent-aukbc-model"
 model="/projects/andiamo/froussea/repro_discut/xlm-roberta-segmentation-new1"
 
