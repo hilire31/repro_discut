@@ -70,9 +70,6 @@ import io, os, sys, argparse
 import json
 from sklearn.metrics import accuracy_score, classification_report
 
-import evaluate
-import numpy as np 
-
 # MWE and ellips : no lab or "_"
 # TODO :
 # print scores *100: 0.6825 => 68.25
@@ -192,7 +189,6 @@ class RelationsEvaluation(Evaluation):
 	"""
 
 	HEADER = "doc\tunit1_toks\tunit2_toks\tunit1_txt\tunit2_txt\tu1_raw\tu2_raw\ts1_toks\ts2_toks\tunit1_sent\tunit2_sent\tdir\trel_type\torig_label\tlabel"
-	HEADER_PRED = "doc\tunit1_toks\tunit2_toks\tunit1_txt\tunit2_txt\tu1_raw\tu2_raw\ts1_toks\ts2_toks\tunit1_sent\tunit2_sent\tdir\trel_type\torig_label\tlabel\tlabel_pred"
 	# HEADER_23 = "doc\tunit1_toks\tunit2_toks\tunit1_txt\tunit2_txt\ts1_toks\ts2_toks\tunit1_sent\tunit2_sent\tdir\torig_label\tlabel"
 
 	LABEL_ID = -1
@@ -220,13 +216,8 @@ class RelationsEvaluation(Evaluation):
 		"""
 		Get lists of data to compare, compute metrics.
 		"""
-		# TODO Chloe temporary modif for code where gold annotations can be different from DISRPT
-		# gold_units, gold_labels, gold_types = self.parse_rels_data(self.g_path, self.opt_str_i, self.opt_rel_t)
-		# pred_units, pred_labels, pred_types = self.parse_rels_data(self.p_path, self.opt_str_i, self.opt_rel_t)
-
-		gold_units, gold_labels, gold_types = self.parse_rels_adapt_data(self.g_path, self.opt_str_i, self.opt_rel_t,True)
-		pred_units, pred_labels, pred_types = self.parse_rels_adapt_data(self.g_path, self.opt_str_i, self.opt_rel_t,False)
-
+		gold_units, gold_labels, gold_types = self.parse_rels_data(self.g_path, self.opt_str_i, self.opt_rel_t)
+		pred_units, pred_labels, pred_types = self.parse_rels_data(self.p_path, self.opt_str_i, self.opt_rel_t)
 		self.check_tokens_number(gold_labels, pred_labels)
 		self.check_identical_tokens(gold_units, pred_units)
 
@@ -259,7 +250,7 @@ class RelationsEvaluation(Evaluation):
 		"""
 		data = self.get_data(path, str_i)
 		header = data.split("\n")[0]
-		assert header == self.HEADER or header == self.HEADER_PRED, "Unrecognized .rels header."
+		assert header == self.HEADER, "Unrecognized .rels header."
 		#column_ID = self.TYPE_ID if rel_t == True else self.LABEL_ID
 
 		rels = data.split("\n")[1:]
@@ -267,27 +258,7 @@ class RelationsEvaluation(Evaluation):
 		units = [" ".join(line.split("\t")[:3]) for line in rels]
 		types = [line.split("\t")[self.TYPE_ID] for line in rels] if rel_t == True else []
 
-		return units, labels, types
 
-	def parse_rels_adapt_data(self, path: str, str_i: bool, rel_t: bool, gold: bool) -> tuple[list[str], list[str]]:
-		"""
-		Rels format from Chloe's script: gold might have been modified, should write a nex gold instead? TODO
-		similar to DISRPT = header, then one relation classification instance per line. 
-		:LREC_2024_header = 15 columns. + 1 column gold + 1 one column pred
-		"""
-		type_id = -5
-		label_id = -1
-		if gold:
-			label_id = -2
-		data = self.get_data(path, str_i)
-		header = data.split("\n")[0]
-		#assert header == self.HEADER or header == self.HEADER_PRED, "Unrecognized .rels header."
-		#column_ID = self.TYPE_ID if rel_t == True else self.LABEL_ID
-
-		rels = data.split("\n")[1:]
-		labels = [line.split("\t")[label_id] for line in rels] ######## .lower()
-		units = [" ".join(line.split("\t")[:3]) for line in rels]
-		types = [line.split("\t")[type_id] for line in rels] if rel_t == True else []
 
 		return units, labels, types
 
@@ -317,15 +288,13 @@ class ConnectivesEvaluation(Evaluation):
 
 		self.fill_output('seg_type', self.seg_type)
 		self.fill_output("options", {"s": self.opt_str_i})
-	
+
 	def compute_scores(self) -> None:
 		"""
 		Get lists of data to compare, compute metrics.
 		"""
-		#print("\n--------------------------------------READING GOLD")
-		gold_tokens, gold_labels, gold_spans = self.parse_conn_data(self.g_path, self.opt_str_i, limit=21873 )
-		#print("\n--------------------------------------Reading pred")
-		pred_tokens, pred_labels, pred_spans = self.parse_conn_data(self.p_path, self.opt_str_i, limit=21873)
+		gold_tokens, gold_labels, gold_spans = self.parse_conn_data(self.g_path, self.opt_str_i)
+		pred_tokens, pred_labels, pred_spans = self.parse_conn_data(self.p_path, self.opt_str_i)
 
 		self.output['tok_count'] = len(gold_tokens)
 
@@ -333,72 +302,6 @@ class ConnectivesEvaluation(Evaluation):
 		self.check_identical_tokens(gold_tokens, pred_tokens)
 		tp, fp, fn = self.compare_spans(gold_spans, pred_spans)
 		self.compute_PRF_metrics(tp, fp, fn)
-		#self.print_results()
-
-		# TODO : add additional fields for different metrics in the main class
-		# Evaluation using seqeval, for comparison
-		metric = evaluate.load("seqeval")
-		true_labels = [[l.split('=')[1]  if l!= '_' else 'O' for l in gold_labels]]
-		print("true_labels", true_labels)
-		true_predictions = [[l.split('=')[1]  if l!= '_' else 'O' for l in pred_labels]]
-		print("true_predictions", true_predictions)
-		print("\n--METRIC=seqeval")
-		all_metrics = metric.compute(predictions=true_predictions, references=true_labels)
-		print(json.dumps(all_metrics, indent=4, cls=NpEncoder))
-		#print(all_metrics)
-		print("\n--METRIC=seqeval_STRICT")
-		all_metrics = metric.compute(predictions=true_predictions, references=true_labels, mode='strict')
-		print(json.dumps(all_metrics, indent=4, cls=NpEncoder))
-		#print(all_metrics)
-		# ----------------------------
-
-		# for r in range( 2400, 21873, 1 ):
-		# 	print( "\nRANGE", r )
-		# 	gold_tokens, gold_labels, gold_spans = self.parse_conn_data(self.g_path, self.opt_str_i, limit=r)
-		# 	#print( "\nGOLD: ", gold_labels )
-		# 	pred_tokens, pred_labels, pred_spans = self.parse_conn_data(self.p_path, self.opt_str_i, limit=r)
-		# 	#print( "\nPRED: ", pred_labels )
-		# 	print( len(gold_labels) ) #, gold_labels )
-		# 	print( len(gold_spans) ) #, gold_spans )
-		# 	print()
-		# 	print( len(pred_labels) ) #, pred_labels)
-		# 	print( len(pred_spans) ) #, pred_spans)
-
-		# 	for i, l in enumerate( gold_labels):
-		# 		if '_' in l and '_' in pred_labels[i]:
-		# 			continue
-		# 		else:
-		# 			print( l, pred_labels[i] )
-
-		# 	# '''''''''''''''''''''''''
-		# 	metric = evaluate.load("seqeval")
-		# 	# Remove ignored index (special tokens) and convert to labels
-		# 	LABEL_NAMES = {'Conn=B-conn':'B', '_':'O', 'Conn=I-conn':'I'}
-		# 	#true_labels = [[LABEL_NAMES[l] for l in gold_labels]]
-		# 	true_labels = [[l.split('=')[1]  if l!= '_' else 'O' for l in gold_labels]]
-		# 	#print("True LABELS", true_labels)
-		# 	#true_predictions = [[LABEL_NAMES[l] for l in pred_labels]]
-		# 	true_predictions = [[l.split('=')[1]  if l!= '_' else 'O' for l in pred_labels]]
-		# 	#print( "\nTRUE LABELS\n", true_labels, "\nTRUE PRED\n", true_predictions )
-		
-		
-		# 	all_metrics = metric.compute(predictions=true_predictions, references=true_labels, mode='strict')
-		# 	print(all_metrics)
-
-		# 	# ----------------------------
-
-		# 	self.output['tok_count'] = len(gold_tokens)
-
-		# 	self.check_tokens_number(gold_tokens, pred_tokens)
-		# 	self.check_identical_tokens(gold_tokens, pred_tokens)
-		# 	tp, fp, fn = self.compare_spans(gold_spans, pred_spans)
-		# 	self.compute_PRF_metrics(tp, fp, fn)
-		# 	self.print_results()
-
-		# 	if all_metrics['overall_f1'] != self.output["f_score"]:
-		# 		print('here we are')
-		# 		break
-
 
 	def compare_spans(self, gold_spans: tuple, pred_spans: tuple) -> tuple[int, int, int]:
 		"""
@@ -420,7 +323,7 @@ class ConnectivesEvaluation(Evaluation):
 
 		return true_positive, false_positive, false_negative
 
-	def parse_conn_data(self, path:str, str_i:bool, limit=21873) -> tuple[list, list, list]:
+	def parse_conn_data(self, path:str, str_i:bool) -> tuple[list, list, list]:
 		"""
 		LABEL = in last column
 		"""
@@ -431,41 +334,25 @@ class ConnectivesEvaluation(Evaluation):
 		counter = 0
 		span_start = -1
 		span_end = -1
-
-		tags_sequences = []
-
-		lines = data.split("\n")
-		#print( "\n----------------------------------\nSTARTREADING----------------")
-
 		for line in data.split("\n"):  # this loop is same than version 1
-		#for line in lines[:limit]:
 			if line.startswith("#") or line == "":
 				continue
 			else:
 				fields = line.split("\t") # Token
 				label = fields[-1]
-				#print("--------> DEALING WITH", label)
 				if "-" in fields[0] or "." in fields[0]:  # Multi-Word Expression or Ellips : No pred shall be there....
 					continue
 				elif self.LAB_CONN_B in label:
-					#print("seeing a B")
-					# case of a B with previous span ended
 					if span_start > -1:  # add span
 						if span_end == -1:
 							span_end = span_start
 						spans.append((span_start,span_end))
 						span_end = -1
-						tags_sequences.append( label )
-						#print( "-- B ADDED")
 					label = self.LAB_CONN_B
 					span_start = counter
 				elif self.LAB_CONN_I in label:
-					#print("seeing a I")
 					label = self.LAB_CONN_I
 					span_end = counter
-					tags_sequences.append( label )
-					if span_start == -1: # strange case where a I is produced without prev B
-						span_start = span_end
 				else:
 					label = "_"
 					if span_start > -1:  # Add span
@@ -474,58 +361,16 @@ class ConnectivesEvaluation(Evaluation):
 						spans.append((span_start,span_end))
 						span_start = -1
 						span_end = -1
-						#print('-- SPAN ADDED')
 
 				tokens.append(fields[1])
 				labels.append(label)
 				counter += 1
-				# print(labels)
-				# print(spans)
-		# Missing the last B if no other token after ?
-		if 'B' in label:
-			if span_start > -1 and span_end == -1:
-				span_end = span_start
-				spans.append((span_start,span_end))
-				#print( '-- 2nd ADD LAST SPAN == B', label, span_start,span_end)
-			else:
-				print(label, span_start,span_end, '\n', line )
-				sys.exit("What happened here")
-		else:
-			if span_start > -1 and span_end > -1:
-				# should only be for I label right?
-				#print( "-- adding last span", label, span_start,span_end, '\n', line )
-				spans.append((span_start,span_end))
 
-
-		# if span_start > -1 and span_end > -1:  # Add last span
-		# 	# should only work if cur label = I, but seems to wait until O
-		# 	spans.append((span_start,span_end))
-		# 	print( '-- ADD LAST SPAN', label, span_start,span_end)
-
-		# if span_start > -1 and span_end == -1 and label == self.LAB_CONN_B:
-		# 	print(span_start,span_end)
-		# 	span_end = span_start
-		# 	print(span_start,span_end)
-		# 	spans.append((span_start,span_end))
-		# 	print( '-- 2nd ADD LAST SPAN', label, span_start,span_end)
-
-		# c = 0
-		# for i, l in enumerate( labels ):
-		# 	if 'B' in l:
-		# 		print( '----> SPAN', spans[c] )
-		# 		c += 1
-		# 	if not '_' in l:
-		# 		print(l)
-
-		# print( "SPANS:", len(spans), 
-		# '\n'.join( ['('+str(s[0])+','+str(s[1])+')' for s in spans] ) )
-		# print( "TAGSEQ", len([l for l in labels if l != '_']), 
-		# '\n'.join( [l for l in labels if l != '_'] ) )
-
-
+		if span_start > -1 and span_end > -1:  # Add last span
+			spans.append((span_start,span_end))
 
 		if not self.LAB_CONN_B in labels:
-			exit(f"Unrecognized labels or no Bs. Expecting: {self.LAB_CONN_B}, {self.LAB_CONN_I}, {self.LAB_CONN_O}...")
+			exit(f"Unrecognized labels. Expecting: {self.LAB_CONN_B}, {self.LAB_CONN_I}, {self.LAB_CONN_O}...")
 
 		return tokens, labels, spans
 
@@ -561,25 +406,7 @@ class SegmentationEvaluation(Evaluation):
 		Get lists of data to compare, compute metrics.
 		"""
 		gold_tokens, gold_labels, gold_spans = self.parse_edu_data(self.g_path, self.opt_str_i, self.no_b)
-		# print()
-		# print( "\nGOLD:", len(gold_labels), gold_labels )
 		pred_tokens, pred_labels, pred_spans = self.parse_edu_data(self.p_path, self.opt_str_i, self.no_b)
-		# print( "\nPRED", len(pred_labels), pred_labels)
-
-
-		# Evaluation using seqeval, for comparison
-		metric = evaluate.load("seqeval")
-		true_labels = [[l.split('=')[1]  if l!= '_' else 'O' for l in gold_labels]]
-		true_predictions = [[l.split('=')[1]  if l!= '_' else 'O' for l in pred_labels]]
-		print("\n--METRIC=seqeval")
-		all_metrics = metric.compute(predictions=true_predictions, references=true_labels)
-		print(json.dumps(all_metrics, indent=4, cls=NpEncoder))
-		#print(all_metrics)
-		print("\n--METRIC=seqeval_STRICT")
-		all_metrics = metric.compute(predictions=true_predictions, references=true_labels, mode='strict')
-		print(json.dumps(all_metrics, indent=4, cls=NpEncoder))
-		#print(all_metrics)
-		# ----------------------------
 
 		self.output['tok_count'] = len(gold_tokens)
 
@@ -626,13 +453,11 @@ class SegmentationEvaluation(Evaluation):
 		span_start = -1
 		span_end = -1
 		for line in data.split("\n"):  # this loop is same than version 1
-			# print(line)
 			if line.startswith("#") or line == "":
 				continue
 			else:
 				fields = line.split("\t")  # Token
 				label = fields[-1]
-				# print(label)
 				if "-" in fields[0] or "." in fields[0]:  # Multi-Word Expression or Ellipsis : No pred shall be there....
 					continue
 				elif no_b == True and fields[0] == "1":
@@ -640,7 +465,6 @@ class SegmentationEvaluation(Evaluation):
 				elif self.LAB_SEG_B in label:
 					label = self.LAB_SEG_B
 				else:
-					#print("WARNING: EDU does not start with B-seg label, but with", label)
 					label = "_"  # 🚩
 					if span_start > -1:  # Add span
 						if span_end == -1:
@@ -651,32 +475,15 @@ class SegmentationEvaluation(Evaluation):
 
 				tokens.append(fields[1])
 				labels.append(label)
-				
 				counter += 1
 
 		if span_start > -1 and span_end > -1:  # Add last span
 			spans.append((span_start, span_end))
 
 		if not self.LAB_SEG_B in labels:
-			print(f"Labels in {self.name} do not contain {self.LAB_SEG_B} we should exit")
-			print("Labels found:")
-			print(labels)
-			print("len(labels):", len(labels))
-			#exit(f"Unrecognized labels. Expecting: {self.LAB_SEG_B}, {self.LAB_SEG_I}...")
+			exit(f"Unrecognized labels. Expecting: {self.LAB_SEG_B}, {self.LAB_SEG_I}...")
 
 		return tokens, labels, spans
-	
-class NpEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, np.integer):
-            return int(obj)
-        if isinstance(obj, np.floating):
-            return float(obj)
-        if isinstance(obj, np.ndarray):
-            return obj.tolist()
-        return super(NpEncoder, self).default(obj)
-
-
 
 
 if __name__ == "__main__":
@@ -706,5 +513,4 @@ if __name__ == "__main__":
 		my_eval = SegmentationEvaluation(name, opts.goldfile, opts.predfile, opts.string_input, opts.no_boundary_edu)
 
 	my_eval.compute_scores()
-	print("\n--METRIC=disrpt")
 	my_eval.print_results()
