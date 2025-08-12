@@ -37,6 +37,7 @@ def process(sent_lines):
     tags = []
     
     if(len(tokens) > 300):
+        print("Token length is greater than 300, splitting into chunks")
         chunk_size = 280
         for i in range(0, len(tokens), chunk_size):
             chunk_tokens = tokens[i:i + chunk_size]
@@ -63,7 +64,7 @@ def process(sent_lines):
         if(len(tags) > i):
             if parts:
                 parts = parts[:-1]  # Remove the last column (if assuming to replace)
-            parts.append(f"Conn={tags[i]}")
+            parts.append(f"Seg={tags[i]}")
             new_sent.append("\t".join(parts))
 
     return new_sent

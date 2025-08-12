@@ -21,6 +21,7 @@ export SING=/apps/containerCollections/CUDA12/pytorch2-NGC-24-02.sif
 # Crée le dossier de logs si nécessaire
 mkdir -p logs
 
-#sh ./inference-scripts/testSeg_connlu.sh  
-sh all_test_2024.sh
+sh ./inference-scripts/testSeg_connlu.sh  
 echo "Finished running inference scripts"
+sh all_test_2024.sh
+echo "Finished running all test scripts"
