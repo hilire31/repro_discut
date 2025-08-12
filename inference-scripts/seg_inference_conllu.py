@@ -61,12 +61,13 @@ def process(sent_lines):
     for i, line in enumerate(sent_lines):
         parts = line.strip().split('\t')
         #print(parts)
+        
         if(len(tags) > i):
             if parts:
                 parts = parts[:-1]  # Remove the last column (if assuming to replace)
             parts.append(f"Seg={tags[i]}")
             new_sent.append("\t".join(parts))
-
+    print("new_sent : ", new_sent[0])
     return new_sent
 
 def predict(sentence):
