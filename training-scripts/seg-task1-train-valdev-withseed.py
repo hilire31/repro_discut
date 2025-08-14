@@ -44,7 +44,11 @@ def load_and_process_data(json_path):
         if len(words) != len(labels):
             continue
 
-        raw_data.append({"tokens": words, "ner_tags": [label_to_id[l] for l in labels]})
+        # Remove any suffix after '|' in label (e.g., 'B-seg|SpaceAfter' -> 'B-seg')
+        raw_data.append({
+            "tokens": words,
+            "ner_tags": [label_to_id[l.split("|")[0]] for l in labels]
+        })
     return Dataset.from_list(raw_data)
 
 # Load training and dev datasets
