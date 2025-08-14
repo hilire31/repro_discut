@@ -20,7 +20,7 @@ model.to(device)
 # Define your label list (same as training)
 label_list = ["O", "B-seg"]  
 
-def process(sent_lines,name_file:str=None):
+def process(sent_lines):
     idds = []
     tokens = []
 
@@ -37,7 +37,6 @@ def process(sent_lines,name_file:str=None):
     tags = []
     
     if(len(tokens) > 300):
-        print("Token length is greater than 300, splitting into chunks")
         chunk_size = 280
         for i in range(0, len(tokens), chunk_size):
             chunk_tokens = tokens[i:i + chunk_size]
@@ -61,25 +60,23 @@ def process(sent_lines,name_file:str=None):
     for i, line in enumerate(sent_lines):
         parts = line.strip().split('\t')
         #print(parts)
-        
         if(len(tags) > i):
             if parts:
                 parts = parts[:-1]  # Remove the last column (if assuming to replace)
             parts.append(f"Seg={tags[i]}")
-            print(f"we append tags from predict, we are in {name_file} file")
             new_sent.append("\t".join(parts))
-    print("lenght new_sent : ", len(new_sent))
+
     return new_sent
 
-def predict(sentence):
+def predict(sentence,name_file:str=None):
     # Tokenize input sentence
     tokens = tokenizer(
         sentence.split(),  # token classification needs pre-tokenized input
         is_split_into_words=True,
         return_tensors="pt",
         truncation=True,
-        padding="max_length",
-        max_length=512
+        max_length=512,
+        padding="max_length"
     )
     
     input_ids = tokens["input_ids"].to(device)
@@ -102,6 +99,7 @@ def predict(sentence):
         if word_id is None or word_id == prev_word_id:
             continue
         final_output.append((sentence.split()[word_id], pred_labels[idx]))
+        print(f"we append tags from predict, we are in {name_file} file")
         prev_word_id = word_id
 
     return final_output
@@ -123,8 +121,28 @@ with open(sys.argv[3], "w", encoding="utf-8") as outfile:
                 flag = 1
                 continue
 
+            if re.match(r"^\#", line):
+                outfile.write(line + "\n")
+                continue
+
+            if (flag == 0):
+                if (line.startswith("1\t")):
+                    flag = 1
+            #if re.match(r"^1\t", line):
+            #    flag = 1
+
             if line.strip() == "":
+                l1 = len(sentA)
                 processed = process(sentA,name_file=sys.argv[3])
+                l2 = len(processed)
+                #outfile.write(f'{l1}\t{l2}\t{flag}\n')
+                if(l1 > l2):
+                    dif = l1 - l2
+                    for iii in range (dif):
+                        jjj = iii+1
+                        processed.append(sentA[-jjj])
+                        
+                #processed = process(sentA)
                 outfile.write("\n".join(processed))
                 outfile.write("\n")
                 outfile.write("\n")
@@ -138,4 +156,3 @@ with open(sys.argv[3], "w", encoding="utf-8") as outfile:
             else:
                 #print(line)
                 outfile.write(line + "\n")
-                
