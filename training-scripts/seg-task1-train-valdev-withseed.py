@@ -45,9 +45,19 @@ def load_and_process_data(json_path):
             continue
 
         # Remove any suffix after '|' in label (e.g., 'B-seg|SpaceAfter' -> 'B-seg')
+        label_ids = []
+        skip = False
+        for l in labels:
+            base_label = l.split("|")[0]
+            if base_label not in label_to_id:
+                skip = True
+                break
+            label_ids.append(label_to_id[base_label])
+        if skip:
+            continue
         raw_data.append({
             "tokens": words,
-            "ner_tags": [label_to_id[l.split("|")[0]] for l in labels]
+            "ner_tags": label_ids
         })
     return Dataset.from_list(raw_data)
 
