@@ -6,7 +6,8 @@
 
 
 
-basepath_arg="/projects/andiamo/corpus/sharedtask2025/data_test"
+#basepath_arg="/projects/andiamo/corpus/sharedtask2025/data_test"
+basepath_arg="/projects/andiamo/froussea/repro_discut/data_test"
 outpath_arg="./data_out/"
 #"./our-system-outputs"
 #model="our-model/segIdent-aukbc-model"
