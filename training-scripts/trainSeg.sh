@@ -24,7 +24,7 @@ export SING=/apps/containerCollections/CUDA12/pytorch2-NGC-24-02.sif
 # Crée le dossier de logs si nécessaire
 mkdir -p logs
 
-ext_arg=".conllu" #or .tok
+ext_arg=".tok" #or .tok
 outpath_arg="./data_out" 
 
 sh ./training-scripts/prepareTrainSegFiles.sh $ext_arg #or .tok
