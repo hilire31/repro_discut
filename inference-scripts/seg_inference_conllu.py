@@ -67,7 +67,7 @@ def process(sent_lines):
                 parts = parts[:-1]  # Remove the last column (if assuming to replace)
             parts.append(f"Seg={tags[i]}")
             new_sent.append("\t".join(parts))
-    print("lenght new_sent : ", len())
+    print("lenght new_sent : ", len(new_sent))
     return new_sent
 
 def predict(sentence):
