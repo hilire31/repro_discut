@@ -66,7 +66,7 @@ def process(sent_lines,name_file:str=None):
             if parts:
                 parts = parts[:-1]  # Remove the last column (if assuming to replace)
             parts.append(f"Seg={tags[i]}")
-            print("we append tags from predict, we are in {name_file} file")
+            print(f"we append tags from predict, we are in {name_file} file")
             new_sent.append("\t".join(parts))
     print("lenght new_sent : ", len(new_sent))
     return new_sent
