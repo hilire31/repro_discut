@@ -24,10 +24,10 @@ export SING=/apps/containerCollections/CUDA12/pytorch2-NGC-24-02.sif
 # Crée le dossier de logs si nécessaire
 mkdir -p logs
 
+ext_arg=".conllu" #or .tok
+outpath_arg="./data_out" 
 
-outpath_arg="./data_out"
-
-sh ./training-scripts/prepareTrainSegFiles.sh  #seg_train.json
-sh ./training-scripts/prepareDevSegFiles.sh #seg_dev.json
+sh ./training-scripts/prepareTrainSegFiles.sh $ext_arg #or .tok
+sh ./training-scripts/prepareDevSegFiles.sh $ext_arg #or .tok
 # train program
-python3 training-scripts/seg-task1-train-valdev-withseed.py  $outpath_arg/seg_train.json $outpath_arg/seg_dev.json
+python3 training-scripts/seg-task1-train-valdev-withseed.py  $outpath_arg/seg_$ext_arg.train.json $outpath_arg/seg_$ext_arg.dev.json

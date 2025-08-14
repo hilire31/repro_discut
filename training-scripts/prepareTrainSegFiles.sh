@@ -5,7 +5,7 @@
 
 basepath_arg="/projects/andiamo/corpus/sharedtask2025/data_test"
 outpath_arg="./data_out"
-ext_arg=".tok"
+ext_arg="$1" #".tok"
 
 python3 ./training-scripts/multiLing_conversion.py  $basepath_arg/ces.rst.crdt/ces.rst.crdt_train$ext_arg $outpath_arg/ces.rst.crdt/ces.rst.crdt_train$ext_arg.json
 python3 ./training-scripts/multiLing_conversion.py  $basepath_arg/deu.rst.pcc/deu.rst.pcc_train$ext_arg $outpath_arg/deu.rst.pcc/deu.rst.pcc_train$ext_arg.json
