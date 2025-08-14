@@ -20,7 +20,7 @@ model.to(device)
 # Define your label list (same as training)
 label_list = ["O", "B-seg"]  
 
-def process(sent_lines):
+def process(sent_lines,name_file:str=None):
     idds = []
     tokens = []
 
@@ -64,11 +64,12 @@ def process(sent_lines):
             if parts:
                 parts = parts[:-1]  # Remove the last column (if assuming to replace)
             parts.append(f"Seg={tags[i]}")
+            print(f"we append tags from predict, we are in {name_file} file")
             new_sent.append("\t".join(parts))
 
     return new_sent
 
-def predict(sentence,name_file:str=None):
+def predict(sentence):
     # Tokenize input sentence
     tokens = tokenizer(
         sentence.split(),  # token classification needs pre-tokenized input
@@ -99,7 +100,7 @@ def predict(sentence,name_file:str=None):
         if word_id is None or word_id == prev_word_id:
             continue
         final_output.append((sentence.split()[word_id], pred_labels[idx]))
-        print(f"we append tags from predict, we are in {name_file} file")
+        
         prev_word_id = word_id
 
     return final_output
