@@ -25,7 +25,7 @@ data_list=extract_json_from_txt(data_text)
 
 
 
-with open(f"results/seg/conllu/{2}.txt", "r", encoding="utf-8") as f:
+with open(f"results/seg/tok/{1}.txt", "r", encoding="utf-8") as f:
     data_text = f.read()
 
 
