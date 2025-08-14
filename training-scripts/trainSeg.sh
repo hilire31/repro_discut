@@ -30,4 +30,4 @@ outpath_arg="./data_out"
 sh ./training-scripts/prepareTrainSegFiles.sh $ext_arg #or .tok
 sh ./training-scripts/prepareDevSegFiles.sh $ext_arg #or .tok
 # train program
-python3 training-scripts/seg-task1-train-valdev-withseed.py  $outpath_arg/seg_$ext_arg.train.json $outpath_arg/seg_$ext_arg.dev.json
+python3 /projects/andiamo/froussea/repro_discut/training-scripts/seg-task1-train-valdev-withseed.py  $outpath_arg/seg_$ext_arg.train.json $outpath_arg/seg_$ext_arg.dev.json
