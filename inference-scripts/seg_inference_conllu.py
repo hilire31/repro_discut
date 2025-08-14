@@ -20,7 +20,7 @@ model.to(device)
 # Define your label list (same as training)
 label_list = ["O", "B-seg"]  
 
-def process(sent_lines):
+def process(sent_lines,name_file:str=None):
     idds = []
     tokens = []
 
@@ -66,6 +66,7 @@ def process(sent_lines):
             if parts:
                 parts = parts[:-1]  # Remove the last column (if assuming to replace)
             parts.append(f"Seg={tags[i]}")
+            print("we append tags from predict, we are in {name_file} file")
             new_sent.append("\t".join(parts))
     print("lenght new_sent : ", len(new_sent))
     return new_sent
@@ -123,7 +124,7 @@ with open(sys.argv[3], "w", encoding="utf-8") as outfile:
                 continue
 
             if line.strip() == "":
-                processed = process(sentA)
+                processed = process(sentA,name_file=sys.argv[3])
                 outfile.write("\n".join(processed))
                 outfile.write("\n")
                 outfile.write("\n")
