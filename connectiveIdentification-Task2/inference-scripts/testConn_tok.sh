@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+basepath_arg="$1"
+model="our-model/connIdent-aukbc-model"
+
+python3 conn_inference_tok.py $basepath_arg/$model $basepath_arg/data/deu.pdtb.pcc/deu.pdtb.pcc_test.tok $basepath_arg/output_data/deu.pdtb.pcc/deu.pdtb.pcc_test.tok
+python3 conn_inference_tok.py $basepath_arg/$model $basepath_arg/data/eng.pdtb.gum/eng.pdtb.gum_test.tok $basepath_arg/output_data/eng.pdtb.gum/eng.pdtb.gum_test.tok
+python3 conn_inference_tok.py $basepath_arg/$model $basepath_arg/data/eng.pdtb.tedm/eng.pdtb.tedm_test.tok $basepath_arg/output_data/eng.pdtb.tedm/eng.pdtb.tedm_test.tok
+python3 conn_inference_tok.py $basepath_arg/$model $basepath_arg/data/ita.pdtb.luna/ita.pdtb.luna_test.tok $basepath_arg/output_data/ita.pdtb.luna/ita.pdtb.luna_test.tok
+python3 conn_inference_tok.py $basepath_arg/$model $basepath_arg/data/pcm.pdtb.disconaija/pcm.pdtb.disconaija_test.tok $basepath_arg/output_data/pcm.pdtb.disconaija/pcm.pdtb.disconaija_test.tok
+python3 conn_inference_tok.py $basepath_arg/$model $basepath_arg/data/pol.iso.pdc/pol.iso.pdc_test.tok $basepath_arg/output_data/pol.iso.pdc/pol.iso.pdc_test.tok
+python3 conn_inference_tok.py $basepath_arg/$model $basepath_arg/data/por.pdtb.crpc/por.pdtb.crpc_test.tok $basepath_arg/output_data/por.pdtb.crpc/por.pdtb.crpc_test.tok
+python3 conn_inference_tok.py $basepath_arg/$model $basepath_arg/data/por.pdtb.tedm/por.pdtb.tedm_test.tok $basepath_arg/output_data/por.pdtb.tedm/por.pdtb.tedm_test.tok
+python3 conn_inference_tok.py $basepath_arg/$model $basepath_arg/data/tha.pdtb.tdtb/tha.pdtb.tdtb_test.tok $basepath_arg/output_data/tha.pdtb.tdtb/tha.pdtb.tdtb_test.tok
+python3 conn_inference_tok.py $basepath_arg/$model $basepath_arg/data/tur.pdtb.tedm/tur.pdtb.tedm_test.tok $basepath_arg/output_data/tur.pdtb.tedm/tur.pdtb.tedm_test.tok
+python3 conn_inference_tok.py $basepath_arg/$model $basepath_arg/data/zho.pdtb.ted/zho.pdtb.ted_test.tok  $basepath_arg/output_data/zho.pdtb.ted/zho.pdtb.ted_test.tok 
