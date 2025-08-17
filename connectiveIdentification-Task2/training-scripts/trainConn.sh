@@ -27,7 +27,7 @@ mkdir -p logs
 ext_arg=".tok" #or .tok
 outpath_arg="./data_out" 
 
-sh prepareTrainConnFiles.sh $ext_arg #or .tok
-sh prepareDevConnFiles.sh $ext_arg #or .tok
+sh /projects/andiamo/froussea/repro_discut/connectiveIdentification-Task2/training-scripts/prepareTrainConnFiles.sh $ext_arg #or .tok
+sh /projects/andiamo/froussea/repro_discut/connectiveIdentification-Task2/training-scripts/prepareDevConnFiles.sh $ext_arg #or .tok
 #  DL/ML training program
 python3 /projects/andiamo/froussea/repro_discut/connectiveIdentification-Task2/training-scripts/conn-task2-train-valdev-withseed.py  $outpath_arg/con_$ext_arg.train.json $outpath_arg/con_$ext_arg.train.json
