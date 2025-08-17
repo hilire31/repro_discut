@@ -34,3 +34,6 @@ echo "Dev files prepared"
 #  DL/ML training program
 python3 /projects/andiamo/froussea/repro_discut/connectiveIdentification-Task2/training-scripts/conn-task2-train-valdev-withseed.py  $outpath_arg/con_$ext_arg.train.json $outpath_arg/con_$ext_arg.train.json
 echo "Training and validation completed"
+
+# /projects/andiamo/froussea/repro_discut/connectiveIdentification-Task2/data_out/deu.pdtb.pcc/deu.pdtb.pcc_train.tok.conn.json
+# /projects/andiamo/corpus/sharedtask2025/data_test/deu.pdtb.pcc/deu.pdtb.pcc_train.tok.conn.json
