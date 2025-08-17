@@ -75,7 +75,8 @@ def process_file_without_language(file_path, tag_col_index=9):
 # === Example usage ===
 file_path = sys.argv[1]
 data = process_file_without_language(file_path, tag_col_index=9)
-
+import os
+os.makedirs(os.path.dirname(sys.argv[2]), exist_ok=True)
 with open(sys.argv[2], "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
 
