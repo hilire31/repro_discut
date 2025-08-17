@@ -9,7 +9,7 @@
 
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --partition=L40SNodes
+#SBATCH --partition=L40SNodes 
 #SBATCH --gres=gpu:1
 #SBATCH --gres-flags=enforce-binding
 
@@ -27,7 +27,7 @@ mkdir -p logs
 ext_arg=".tok" #or .tok
 outpath_arg="./data_out" 
 
-sh ./training-scripts/prepareTrainConnFiles.sh $ext_arg #or .tok
-sh ./training-scripts/prepareDevConnFiles.sh $ext_arg #or .tok
+sh prepareTrainConnFiles.sh $ext_arg #or .tok
+sh prepareDevConnFiles.sh $ext_arg #or .tok
 #  DL/ML training program
 python3 /projects/andiamo/froussea/repro_discut/connectiveIdentification-Task2/training-scripts/conn-task2-train-valdev-withseed.py  $outpath_arg/con_$ext_arg.train.json $outpath_arg/con_$ext_arg.train.json
