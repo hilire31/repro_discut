@@ -1,4 +1,3 @@
-
 {
     "doc_name": "deu.pdtb.pcc_test.tok",
     "seg_type": "connective spans",
@@ -11,6 +10,19 @@
     "precision": 0.8469387755102041,
     "recall": 0.8829787234042553,
     "f_score": 0.8645833333333334
+}
+{
+    "doc_name": "eng.pdtb.tedm_test.tok",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 5474,
+    "gold_count": 231,
+    "pred_count": 203,
+    "precision": 0.8423645320197044,
+    "recall": 0.7402597402597403,
+    "f_score": 0.7880184331797235
 }
 {
     "doc_name": "ita.pdtb.luna_test.tok",
@@ -63,4 +75,30 @@
     "precision": 0.7969924812030075,
     "recall": 0.7794117647058824,
     "f_score": 0.788104089219331
+}
+{
+    "doc_name": "por.pdtb.tedm_test.tok",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 5405,
+    "gold_count": 203,
+    "pred_count": 214,
+    "precision": 0.780373831775701,
+    "recall": 0.8226600985221675,
+    "f_score": 0.8009592326139089
+}
+{
+    "doc_name": "tur.pdtb.tedm_test.tok",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 4030,
+    "gold_count": 247,
+    "pred_count": 122,
+    "precision": 0.8032786885245902,
+    "recall": 0.3967611336032389,
+    "f_score": 0.5311653116531165
 }
