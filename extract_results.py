@@ -35,8 +35,18 @@ data_list=extract_json_from_txt(data_text)
 
 
 
-print("\n\nCONN : \n")
+print("\n\nCONN : ")
+print("tok : \n")
 with open(f"results/conn/tok/{1}.txt", "r", encoding="utf-8") as f:
+    data_text = f.read()
+
+
+data_list=extract_json_from_txt(data_text)
+
+
+
+print("\nconllu : \n")
+with open(f"results/conn/conllu/{1}.txt", "r", encoding="utf-8") as f:
     data_text = f.read()
 
 

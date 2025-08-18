@@ -1,0 +1,52 @@
+{
+    "doc_name": "deu.pdtb.pcc_test.conllu",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 3239,
+    "gold_count": 94,
+    "pred_count": 98,
+    "precision": 0.8469387755102041,
+    "recall": 0.8829787234042553,
+    "f_score": 0.8645833333333334
+}
+{
+    "doc_name": "pol.iso.pdc_test.conllu",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 13368,
+    "gold_count": 426,
+    "pred_count": 445,
+    "precision": 0.6876404494382022,
+    "recall": 0.7183098591549296,
+    "f_score": 0.7026406429391505
+}
+{
+    "doc_name": "por.pdtb.crpc_test.conllu",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 19153,
+    "gold_count": 544,
+    "pred_count": 531,
+    "precision": 0.8041431261770244,
+    "recall": 0.7849264705882353,
+    "f_score": 0.7944186046511628
+}
+{
+    "doc_name": "tha.pdtb.tdtb_test.conllu",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 30062,
+    "gold_count": 1344,
+    "pred_count": 1382,
+    "precision": 0.8183791606367583,
+    "recall": 0.8415178571428571,
+    "f_score": 0.8297872340425531
+}
