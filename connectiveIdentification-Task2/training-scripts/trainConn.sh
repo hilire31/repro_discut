@@ -24,7 +24,7 @@ export SING=/apps/containerCollections/CUDA12/pytorch2-NGC-24-02.sif
 # Crée le dossier de logs si nécessaire
 mkdir -p logs
 
-ext_arg=".tok" #or .tok
+ext_arg=".conllu" #or .tok
 outpath_arg="./data_out" 
 
 sh /projects/andiamo/froussea/repro_discut/connectiveIdentification-Task2/training-scripts/prepareTrainConnFiles.sh $ext_arg #or .tok

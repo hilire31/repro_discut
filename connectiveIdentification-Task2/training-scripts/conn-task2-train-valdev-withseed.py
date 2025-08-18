@@ -92,7 +92,7 @@ model = AutoModelForTokenClassification.from_pretrained(
 
 # Training arguments
 training_args = TrainingArguments(
-    output_dir="./xlm-roberta-connective-10epochnew",
+    output_dir="./xlm-roberta-connective-10epochnewconllu",
     eval_strategy="epoch",
     learning_rate=1e-5,
     per_device_train_batch_size=8,
@@ -141,6 +141,6 @@ trainer = Trainer(
 trainer.train()
 
 # Save
-model.save_pretrained("./xlm-roberta-connective-10epochnew1")
-tokenizer.save_pretrained("./xlm-roberta-connective-10epochnew1")
+model.save_pretrained("./xlm-roberta-connective-10epochnewconllu1")
+tokenizer.save_pretrained("./xlm-roberta-connective-10epochnewconllu1")
 
