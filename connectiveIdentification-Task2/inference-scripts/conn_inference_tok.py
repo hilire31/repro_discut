@@ -164,6 +164,9 @@ emptyCount = 0
 with open(sys.argv[2], 'r', encoding='utf-8') as file:    
     docA = [line.rstrip('\n') for line in file]
     #print(docA)
+import os
+output_path = sys.argv[3]
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
 with open(sys.argv[3], "w", encoding="utf-8") as outfile:
     for line in docA:
