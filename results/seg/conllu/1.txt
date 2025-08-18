@@ -1,0 +1,286 @@
+{
+    "doc_name": "ces.rst.crdt_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 1544,
+    "gold_count": 161,
+    "pred_count": 160,
+    "precision": 0.925,
+    "recall": 0.9192546583850931,
+    "f_score": 0.9221183800623053
+}
+{
+    "doc_name": "deu.rst.pcc_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 3202,
+    "gold_count": 295,
+    "pred_count": 291,
+    "precision": 0.9484536082474226,
+    "recall": 0.9355932203389831,
+    "f_score": 0.9419795221843003
+}
+{
+    "doc_name": "eng.dep.scidtb_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 19744,
+    "gold_count": 2116,
+    "pred_count": 2133,
+    "precision": 0.9399906235349273,
+    "recall": 0.9475425330812854,
+    "f_score": 0.9437514709343375
+}
+{
+    "doc_name": "eng.erst.gum_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 30255,
+    "gold_count": 3775,
+    "pred_count": 3508,
+    "precision": 0.9370011402508552,
+    "recall": 0.870728476821192,
+    "f_score": 0.9026500068653027
+}
+{
+    "doc_name": "eng.rst.oll_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 4576,
+    "gold_count": 288,
+    "pred_count": 327,
+    "precision": 0.7859327217125383,
+    "recall": 0.8923611111111112,
+    "f_score": 0.8357723577235773
+}
+{
+    "doc_name": "eng.rst.rstdt_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 21666,
+    "gold_count": 2346,
+    "pred_count": 2310,
+    "precision": 0.9584415584415584,
+    "recall": 0.9437340153452686,
+    "f_score": 0.9510309278350515
+}
+{
+    "doc_name": "eng.rst.sts_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 6824,
+    "gold_count": 336,
+    "pred_count": 356,
+    "precision": 0.7865168539325843,
+    "recall": 0.8333333333333334,
+    "f_score": 0.8092485549132948
+}
+{
+    "doc_name": "eng.rst.umuc_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 5821,
+    "gold_count": 523,
+    "pred_count": 530,
+    "precision": 0.8603773584905661,
+    "recall": 0.8718929254302104,
+    "f_score": 0.8660968660968662
+}
+{
+    "doc_name": "eng.sdrt.msdc_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 46707,
+    "gold_count": 5015,
+    "pred_count": 4877,
+    "precision": 0.961041623949149,
+    "recall": 0.9345962113659023,
+    "f_score": 0.9476344520824909
+}
+{
+    "doc_name": "eng.sdrt.stac_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 4540,
+    "gold_count": 1154,
+    "pred_count": 1254,
+    "precision": 0.8771929824561403,
+    "recall": 0.9532062391681109,
+    "f_score": 0.9136212624584716
+}
+{
+    "doc_name": "eus.rst.ert_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 7871,
+    "gold_count": 740,
+    "pred_count": 760,
+    "precision": 0.8776315789473684,
+    "recall": 0.9013513513513514,
+    "f_score": 0.8893333333333332
+}
+{
+    "doc_name": "fas.rst.prstc_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 7369,
+    "gold_count": 670,
+    "pred_count": 694,
+    "precision": 0.9164265129682997,
+    "recall": 0.9492537313432836,
+    "f_score": 0.9325513196480939
+}
+{
+    "doc_name": "fra.sdrt.annodis_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 5171,
+    "gold_count": 618,
+    "pred_count": 570,
+    "precision": 0.8596491228070176,
+    "recall": 0.7928802588996764,
+    "f_score": 0.8249158249158249
+}
+{
+    "doc_name": "fra.sdrt.summre_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 56818,
+    "gold_count": 6860,
+    "pred_count": 10884,
+    "precision": 0.5682653436236678,
+    "recall": 0.9016034985422741,
+    "f_score": 0.6971370604147881
+}
+{
+    "doc_name": "nld.rst.nldt_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 3553,
+    "gold_count": 338,
+    "pred_count": 339,
+    "precision": 0.967551622418879,
+    "recall": 0.9704142011834319,
+    "f_score": 0.9689807976366321
+}
+{
+    "doc_name": "por.rst.cstn_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 3815,
+    "gold_count": 306,
+    "pred_count": 317,
+    "precision": 0.9274447949526814,
+    "recall": 0.9607843137254902,
+    "f_score": 0.9438202247191011
+}
+{
+    "doc_name": "spa.rst.rststb_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 8111,
+    "gold_count": 460,
+    "pred_count": 451,
+    "precision": 0.9246119733924612,
+    "recall": 0.9065217391304348,
+    "f_score": 0.9154774972557629
+}
+{
+    "doc_name": "rus.rst.rrt_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 29023,
+    "gold_count": 3240,
+    "pred_count": 3212,
+    "precision": 0.924346201743462,
+    "recall": 0.9163580246913581,
+    "f_score": 0.9203347799132052
+}
+{
+    "doc_name": "spa.rst.sctb_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 3814,
+    "gold_count": 168,
+    "pred_count": 159,
+    "precision": 0.8742138364779874,
+    "recall": 0.8273809523809523,
+    "f_score": 0.8501529051987767
+}
+{
+    "doc_name": "zho.dep.scidtb_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 3621,
+    "gold_count": 235,
+    "pred_count": 267,
+    "precision": 0.8314606741573034,
+    "recall": 0.9446808510638298,
+    "f_score": 0.8844621513944224
+}
+{
+    "doc_name": "zho.rst.gcdt_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 7647,
+    "gold_count": 1092,
+    "pred_count": 1159,
+    "precision": 0.8731665228645384,
+    "recall": 0.9267399267399268,
+    "f_score": 0.8991559306974679
+}
+{
+    "doc_name": "zho.rst.sctb_test.conllu",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 3577,
+    "gold_count": 168,
+    "pred_count": 290,
+    "precision": 0.5413793103448276,
+    "recall": 0.9345238095238095,
+    "f_score": 0.6855895196506551
+}
