@@ -335,10 +335,12 @@ class ConnectivesEvaluation(Evaluation):
 		span_start = -1
 		span_end = -1
 		for line in data.split("\n"):  # this loop is same than version 1
-			if line.startswith("#") or line == "":
+			if line.startswith("#") or line == "" or not line:
 				continue
 			else:
 				fields = line.split("\t") # Token
+				if len(fields) < 2:
+					continue
 				label = fields[-1]
 				if "-" in fields[0] or "." in fields[0]:  # Multi-Word Expression or Ellips : No pred shall be there....
 					continue
@@ -361,7 +363,7 @@ class ConnectivesEvaluation(Evaluation):
 						spans.append((span_start,span_end))
 						span_start = -1
 						span_end = -1
-
+				
 				tokens.append(fields[1])
 				labels.append(label)
 				counter += 1
