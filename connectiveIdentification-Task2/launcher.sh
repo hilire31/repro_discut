@@ -23,5 +23,5 @@ mkdir -p logs
 
 sh ./inference-scripts/testConn_conllu.sh  
 echo "Finished running inference scripts"
-sh all_test_2024.sh .conllu
+sh all_test_2024.sh .tok
 echo "Finished running all test scripts"
