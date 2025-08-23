@@ -25,6 +25,32 @@
     "f_score": 0.7880184331797235
 }
 {
+    "doc_name": "ita.pdtb.luna_test.conllu",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 6050,
+    "gold_count": 261,
+    "pred_count": 405,
+    "precision": 0.47901234567901235,
+    "recall": 0.7432950191570882,
+    "f_score": 0.5825825825825826
+}
+{
+    "doc_name": "pcm.pdtb.disconaija_test.conllu",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 14325,
+    "gold_count": 388,
+    "pred_count": 382,
+    "precision": 0.7225130890052356,
+    "recall": 0.711340206185567,
+    "f_score": 0.7168831168831169
+}
+{
     "doc_name": "pol.iso.pdc_test.conllu",
     "seg_type": "connective spans",
     "options": {
