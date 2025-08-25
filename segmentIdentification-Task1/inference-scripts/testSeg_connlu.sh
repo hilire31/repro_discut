@@ -11,7 +11,9 @@ model="/projects/andiamo/froussea/repro_discut/xlm-roberta-segmentation-new1"
 
 python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/ces.rst.crdt/ces.rst.crdt_test.conllu $outpath_arg/ces.rst.crdt/ces.rst.crdt_test.conllu
 python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/deu.rst.pcc/deu.rst.pcc_test.conllu $outpath_arg/deu.rst.pcc/deu.rst.pcc_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.dep.covdtb/eng.dep.covdtb_test.tok $outpath_arg/eng.dep.covdtb/eng.dep.covdtb_test.conllu
 python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.dep.scidtb/eng.dep.scidtb_test.conllu $outpath_arg/eng.dep.scidtb/eng.dep.scidtb_test.conllu
+python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.erst.gentle/eng.erst.gentle_test.conllu $outpath_arg/eng.erst.gentle/eng.erst.gentle_test.conllu
 python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.erst.gum/eng.erst.gum_test.conllu $outpath_arg/eng.erst.gum/eng.erst.gum_test.conllu
 python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.rst.oll/eng.rst.oll_test.conllu $outpath_arg/eng.rst.oll/eng.rst.oll_test.conllu
 python3 ./inference-scripts/seg_inference_conllu.py $model $basepath_arg/eng.rst.rstdt/eng.rst.rstdt_test.conllu $outpath_arg/eng.rst.rstdt/eng.rst.rstdt_test.conllu

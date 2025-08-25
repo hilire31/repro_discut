@@ -23,5 +23,5 @@ mkdir -p logs
 
 sh ./inference-scripts/testSeg_tok.sh  
 echo "Finished running inference scripts"
-sh all_test_2024.sh
+sh all_test_2024.sh .tok
 echo "Finished running all test scripts"

@@ -12,6 +12,32 @@
     "f_score": 0.8645833333333334
 }
 {
+    "doc_name": "eng.pdtb.gentle_test.tok",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 17799,
+    "gold_count": 466,
+    "pred_count": 460,
+    "precision": 0.8717391304347826,
+    "recall": 0.8605150214592274,
+    "f_score": 0.8660907127429806
+}
+{
+    "doc_name": "eng.pdtb.pdtb_test.tok",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 98832,
+    "gold_count": 2386,
+    "pred_count": 2351,
+    "precision": 0.8757975329646959,
+    "recall": 0.8629505448449287,
+    "f_score": 0.8693265780029553
+}
+{
     "doc_name": "eng.pdtb.tedm_test.tok",
     "seg_type": "connective spans",
     "options": {
@@ -101,4 +127,17 @@
     "precision": 0.8032786885245902,
     "recall": 0.3967611336032389,
     "f_score": 0.5311653116531165
+}
+{
+    "doc_name": "zho.pdtb.cdtb_test.tok",
+    "seg_type": "connective spans",
+    "options": {
+        "s": false
+    },
+    "tok_count": 10075,
+    "gold_count": 312,
+    "pred_count": 207,
+    "precision": 0.8647342995169082,
+    "recall": 0.5737179487179487,
+    "f_score": 0.6897880539499036
 }
