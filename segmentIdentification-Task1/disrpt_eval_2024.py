@@ -335,7 +335,7 @@ class ConnectivesEvaluation(Evaluation):
 		span_start = -1
 		span_end = -1
 		for line in data.split("\n"):  # this loop is same than version 1
-			if line.startswith("#") or line == "":
+			if line.startswith("#") or line == "" or not line:
 				continue
 			else:
 				fields = line.split("\t") # Token
@@ -453,7 +453,7 @@ class SegmentationEvaluation(Evaluation):
 		span_start = -1
 		span_end = -1
 		for line in data.split("\n"):  # this loop is same than version 1
-			if line.startswith("#") or line == "":
+			if line.startswith("#") or line == "" or not line:
 				continue
 			else:
 				fields = line.split("\t")  # Token
