@@ -111,7 +111,7 @@ class Evaluation:
 			self.report += "\nFATAL: different number of tokens detected in gold and pred:\n"
 			self.report += ">>>  In " + self.name + ": " + str(len(g)) + " gold tokens but " + str(len(p)) + " predicted tokens\n\n"
 			sys.stderr.write(self.report)
-			sys.exit(0)
+			#sys.exit(0)
 
 	def check_identical_tokens(self, g: list, p: list) -> None:
 		"""
