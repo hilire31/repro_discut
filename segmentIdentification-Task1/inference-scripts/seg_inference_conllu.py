@@ -109,6 +109,9 @@ def predict(sentence):
 with open(sys.argv[2], 'r') as infile:    
     docA = [line.rstrip('\n') for line in infile]
 
+import os
+output_path = sys.argv[3]
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
 with open(sys.argv[3], "w", encoding="utf-8") as outfile: 
 #with open("fra.sdrt.summre_test.conllu", "w", encoding="utf-8") as outfile: 
         flag = 0
