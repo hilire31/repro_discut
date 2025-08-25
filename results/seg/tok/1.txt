@@ -1,5 +1,5 @@
 {
-    "doc_name": "ces.rst.crdt_test.conllu",
+    "doc_name": "ces.rst.crdt_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -12,7 +12,7 @@
     "f_score": 0.9074074074074073
 }
 {
-    "doc_name": "deu.rst.pcc_test.conllu",
+    "doc_name": "deu.rst.pcc_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -25,7 +25,20 @@
     "f_score": 0.9437819420783646
 }
 {
-    "doc_name": "eng.dep.scidtb_test.conllu",
+    "doc_name": "eng.dep.covdtb_test.tok",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 31480,
+    "gold_count": 2951,
+    "pred_count": 3193,
+    "precision": 0.8681490761039774,
+    "recall": 0.9393425957302609,
+    "f_score": 0.90234375
+}
+{
+    "doc_name": "eng.dep.scidtb_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -38,7 +51,20 @@
     "f_score": 0.9437514709343375
 }
 {
-    "doc_name": "eng.rst.oll_test.conllu",
+    "doc_name": "eng.erst.gentle_test.tok",
+    "seg_type": "EDUs",
+    "options": {
+        "s": false
+    },
+    "tok_count": 17799,
+    "gold_count": 2716,
+    "pred_count": 2204,
+    "precision": 0.9251361161524501,
+    "recall": 0.7507363770250368,
+    "f_score": 0.8288617886178862
+}
+{
+    "doc_name": "eng.rst.oll_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -51,7 +77,7 @@
     "f_score": 0.8414239482200647
 }
 {
-    "doc_name": "eng.rst.rstdt_test.conllu",
+    "doc_name": "eng.rst.rstdt_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -64,7 +90,7 @@
     "f_score": 0.943558810857389
 }
 {
-    "doc_name": "eng.rst.sts_test.conllu",
+    "doc_name": "eng.rst.sts_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -77,7 +103,7 @@
     "f_score": 0.6743185078909613
 }
 {
-    "doc_name": "eng.rst.umuc_test.conllu",
+    "doc_name": "eng.rst.umuc_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -90,7 +116,7 @@
     "f_score": 0.8660968660968662
 }
 {
-    "doc_name": "eng.sdrt.msdc_test.conllu",
+    "doc_name": "eng.sdrt.msdc_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -103,7 +129,7 @@
     "f_score": 0.9466531440162271
 }
 {
-    "doc_name": "eng.sdrt.stac_test.conllu",
+    "doc_name": "eng.sdrt.stac_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -116,7 +142,7 @@
     "f_score": 0.8794624107517849
 }
 {
-    "doc_name": "eus.rst.ert_test.conllu",
+    "doc_name": "eus.rst.ert_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -129,7 +155,7 @@
     "f_score": 0.8888888888888888
 }
 {
-    "doc_name": "fas.rst.prstc_test.conllu",
+    "doc_name": "fas.rst.prstc_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -142,7 +168,7 @@
     "f_score": 0.9317681584739544
 }
 {
-    "doc_name": "fra.sdrt.annodis_test.conllu",
+    "doc_name": "fra.sdrt.annodis_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -155,7 +181,7 @@
     "f_score": 0.8476595744680852
 }
 {
-    "doc_name": "nld.rst.nldt_test.conllu",
+    "doc_name": "nld.rst.nldt_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -168,7 +194,7 @@
     "f_score": 0.9704142011834319
 }
 {
-    "doc_name": "por.rst.cstn_test.conllu",
+    "doc_name": "por.rst.cstn_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -181,7 +207,7 @@
     "f_score": 0.9438202247191011
 }
 {
-    "doc_name": "spa.rst.rststb_test.conllu",
+    "doc_name": "spa.rst.rststb_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -194,7 +220,7 @@
     "f_score": 0.9120879120879122
 }
 {
-    "doc_name": "rus.rst.rrt_test.conllu",
+    "doc_name": "rus.rst.rrt_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -207,7 +233,7 @@
     "f_score": 0.9180327868852459
 }
 {
-    "doc_name": "spa.rst.sctb_test.conllu",
+    "doc_name": "spa.rst.sctb_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -220,7 +246,7 @@
     "f_score": 0.8333333333333334
 }
 {
-    "doc_name": "zho.dep.scidtb_test.conllu",
+    "doc_name": "zho.dep.scidtb_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -233,7 +259,7 @@
     "f_score": 0.8844621513944224
 }
 {
-    "doc_name": "zho.rst.gcdt_test.conllu",
+    "doc_name": "zho.rst.gcdt_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
@@ -246,7 +272,7 @@
     "f_score": 0.8891867739052725
 }
 {
-    "doc_name": "zho.rst.sctb_test.conllu",
+    "doc_name": "zho.rst.sctb_test.tok",
     "seg_type": "EDUs",
     "options": {
         "s": false
