@@ -9,3 +9,11 @@ output_data/*
 *.err
 *.txt
 *.conllu
+*.rels
+*.safetensors
+*.pth
+*.bin
+*.pth
+*.md
+*.md
+*.pt
